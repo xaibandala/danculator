@@ -28,6 +28,7 @@ All images, text, colors, animation settings, difficulty and sound live in that 
 | Buttons, welcome text, hints | `text` |
 | Final result messages | `results` (percent thresholds) |
 | Sticker on the results screen | `results[].image` (currently on "BIG BRAIN ENERGY!" and "DID YOU EVEN TRY?!" only) |
+| Fake ad break (on/off, when, text, colors, skip timer) | `ads` |
 | Background and colors | `theme` |
 | Speed of every animation | `animation.durationScale` (2 = slower, 0.5 = faster) |
 | Jumpscare drama | `animation.jumpscare.intensity` (0 = gentle, 2 = max) and the individual timings |

@@ -127,6 +127,41 @@ const quizConfig = {
   ],
 
   // ---------------------------------------------------------------
+  // FAKE AD BREAK
+  // ---------------------------------------------------------------
+  ads: {
+    enabled: true,
+    /** Question numbers after which the ad pops up (1 = after the first question). */
+    showAfterQuestions: [1],
+    /** Seconds before the "Skip Ad" button can be clicked. */
+    skipDelaySeconds: 3,
+
+    label: 'AD',
+    sponsored: 'Sponsored',
+    skipCountdown: 'Skip in {s}…',
+    skipButton: 'Skip Ad ⏭',
+
+    badge: '📢 SPECIAL OFFER!',
+    headline: 'GUSTO MO BANG LUMAKI ANG IYONG TITI? 😳',
+    body: 'May bagong Male Enhancement Program kami para sa mga lalaking gustong “mag-level up.” 😂',
+    bullets: ['Confidential', 'No appointment needed', 'Limited slots only', '₱99 initial consultation'],
+    ctaPrompt: 'Para ma-check kung eligible ka, reply:',
+    ctaButton: 'GUSTO KO',
+    warning: '⚠️ Warning: Posibleng lumaki ang kumpiyansa kaysa sa actual result. 😂',
+
+    /** Shown after the player clicks the CTA button. */
+    ctaResponse: '😂 Na-prank ka! Walang ganyan dito. Math muna bago kumpiyansa.',
+    continueButton: 'Balik sa Math ➡️',
+
+    colors: {
+      background: '#fde047',
+      text: '#1c1917',
+      accent: '#dc2626',
+      button: '#16a34a',
+    },
+  },
+
+  // ---------------------------------------------------------------
   // THEME / COLORS
   // ---------------------------------------------------------------
   theme: {

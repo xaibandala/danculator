@@ -4,6 +4,7 @@ import { parseAnswer } from '../utils/questionGenerator';
 import ProgressBar from './ProgressBar';
 import CorrectPopup from './CorrectPopup';
 import WrongJumpscare from './WrongJumpscare';
+import AdPopup from './AdPopup';
 import './QuizScreen.css';
 
 export default function QuizScreen({ quiz, reducedMotion }) {
@@ -100,6 +101,7 @@ export default function QuizScreen({ quiz, reducedMotion }) {
           onNext={quiz.next}
         />
       )}
+      {status === 'ad' && <AdPopup key={index} onClose={quiz.closeAd} />}
     </>
   );
 }

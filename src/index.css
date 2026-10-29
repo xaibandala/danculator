@@ -1,0 +1,189 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #312e81;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- App shell ---------- */
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: var(--bg-gradient);
+  background-size: 200% 200%;
+  animation: bg-shift 16s ease-in-out infinite;
+  color: var(--text-color);
+  font-family: var(--font-family);
+  overflow-x: hidden;
+}
+
+@keyframes bg-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ---------- Card ---------- */
+.card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--card-bg);
+  border-radius: 28px;
+  padding: clamp(20px, 5vw, 40px);
+  box-shadow:
+    0 24px 60px rgba(30, 10, 60, 0.35),
+    0 0 0 6px rgba(255, 255, 255, 0.25);
+  text-align: center;
+  animation: card-in 500ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  --btn-bg: var(--primary);
+  --btn-bg-hover: var(--primary-hover);
+  --btn-shadow: var(--primary-dark);
+
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--btn-bg);
+  border: none;
+  border-radius: 999px;
+  padding: 14px 30px;
+  cursor: pointer;
+  box-shadow: 0 6px 0 var(--btn-shadow);
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--btn-bg-hover);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 0 var(--btn-shadow);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--btn-shadow);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn:focus-visible {
+  outline: 4px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.btn--big {
+  font-size: 1.35rem;
+  padding: 16px 40px;
+}
+
+.btn--success {
+  --btn-bg: var(--success);
+  --btn-bg-hover: var(--success-dark);
+  --btn-shadow: #14532d;
+}
+
+.btn--danger {
+  --btn-bg: var(--danger);
+  --btn-bg-hover: var(--danger-dark);
+  --btn-shadow: #7f1d1d;
+}
+
+/* ---------- Pills ---------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--primary-dark);
+}
+
+/* ---------- Overlays (popups) ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* ---------- Reaction image (img or emoji fallback) ---------- */
+.reaction-image {
+  width: var(--reaction-size, 200px);
+  height: var(--reaction-size, 200px);
+  object-fit: contain;
+  user-select: none;
+}
+
+.reaction-image--emoji {
+  display: grid;
+  place-items: center;
+  font-size: calc(var(--reaction-size, 200px) * 0.78);
+  line-height: 1;
+}
+
+/* ---------- Reduced motion ---------- */
+.app--reduced-motion,
+.app--reduced-motion *,
+.app--reduced-motion *::before,
+.app--reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  animation-delay: 0ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

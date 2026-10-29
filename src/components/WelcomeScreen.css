@@ -1,0 +1,60 @@
+.welcome__emoji {
+  font-size: clamp(4rem, 18vw, 6rem);
+  line-height: 1;
+  display: inline-block;
+  animation: welcome-wiggle 2.4s ease-in-out infinite;
+}
+
+@keyframes welcome-wiggle {
+  0%,
+  100% {
+    transform: rotate(-8deg) scale(1);
+  }
+  50% {
+    transform: rotate(8deg) scale(1.08);
+  }
+}
+
+.welcome__title {
+  margin: 8px 0 0;
+  font-size: clamp(2.4rem, 11vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, var(--primary), #ec4899, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.welcome__tagline {
+  margin: 8px 0 20px;
+  font-size: 1.15rem;
+  color: var(--muted-text);
+}
+
+.welcome__rules {
+  list-style: none;
+  margin: 0 auto 20px;
+  padding: 0;
+  max-width: 380px;
+  display: grid;
+  gap: 10px;
+  text-align: left;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.welcome__rules li {
+  padding: 10px 16px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--primary) 7%, transparent);
+}
+
+.welcome__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 24px;
+}

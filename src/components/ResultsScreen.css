@@ -1,0 +1,100 @@
+.results__label {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--muted-text);
+}
+
+.results__score {
+  margin: 4px 0 0;
+  line-height: 1;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.results__score-value {
+  display: inline-block;
+  font-size: clamp(4.5rem, 22vw, 7rem);
+  background: linear-gradient(90deg, var(--primary), #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: results-score-in 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.results__score-total {
+  font-size: clamp(1.8rem, 8vw, 2.6rem);
+  color: var(--muted-text);
+}
+
+@keyframes results-score-in {
+  from {
+    opacity: 0;
+    transform: scale(0.2) rotate(-20deg);
+  }
+}
+
+.results__sticker {
+  --reaction-size: min(60vw, 240px);
+  display: block;
+  margin: 12px auto 0;
+  filter: drop-shadow(0 10px 18px rgba(46, 16, 101, 0.3));
+  animation: results-sticker-slap 650ms 150ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes results-sticker-slap {
+  from {
+    opacity: 0;
+    transform: scale(2.2) rotate(-14deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(-4deg);
+  }
+}
+
+.results__message {
+  margin: 12px 0 4px;
+  font-size: clamp(1.8rem, 8vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  animation: results-message-in 600ms 250ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes results-message-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.8);
+  }
+}
+
+.results__comment {
+  margin: 0 0 18px;
+  font-size: 1.15rem;
+  color: var(--muted-text);
+}
+
+.results__history {
+  list-style: none;
+  margin: 0 auto 24px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.results__dot {
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: default;
+  animation: results-dot-in 300ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes results-dot-in {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+}

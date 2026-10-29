@@ -1,0 +1,195 @@
+/* ---------- Step 1: darken the background (smooth fade, never a flash) ---------- */
+.jumpscare::before {
+  background: var(--jumpscare-backdrop);
+  opacity: var(--js-darken-opacity);
+}
+
+.jumpscare--darken::before {
+  animation: js-darken var(--js-darken-ms) ease-out both;
+}
+
+.jumpscare--settled::before {
+  opacity: var(--js-settled-opacity);
+  animation: js-lighten var(--js-settle-ms) ease-out both;
+}
+
+@keyframes js-darken {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: var(--js-darken-opacity);
+  }
+}
+
+@keyframes js-lighten {
+  from {
+    opacity: var(--js-darken-opacity);
+  }
+  to {
+    opacity: var(--js-settled-opacity);
+  }
+}
+
+/* ---------- The popup ---------- */
+.jumpscare__popup {
+  --reaction-size: min(62vw, 320px);
+  width: min(100%, 600px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(16px, 4vw, 28px);
+  border: 5px solid transparent;
+  border-radius: 28px;
+  text-align: center;
+  transition:
+    background-color var(--js-settle-ms) ease,
+    border-color var(--js-settle-ms) ease,
+    box-shadow var(--js-settle-ms) ease;
+}
+
+.jumpscare__shaker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.jumpscare__image {
+  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.5));
+  transition:
+    width var(--js-settle-ms) ease,
+    height var(--js-settle-ms) ease,
+    font-size var(--js-settle-ms) ease;
+}
+
+.jumpscare__title {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.1rem, 9vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  color: var(--danger);
+  -webkit-text-stroke: 2px #fff;
+  paint-order: stroke fill;
+  text-shadow: 0 5px 0 var(--danger-dark);
+  transition:
+    font-size var(--js-settle-ms) ease,
+    max-width var(--js-settle-ms) ease;
+}
+
+/* ---------- Step 2: fast zoom into the center ---------- */
+.jumpscare--zoom .jumpscare__popup {
+  animation: js-zoom var(--js-zoom-ms) cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+@keyframes js-zoom {
+  0% {
+    opacity: 0;
+    transform: scale(var(--js-zoom-from));
+  }
+  65% {
+    opacity: 1;
+    transform: scale(var(--js-zoom-overshoot));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------- Step 4: short, decaying shake ---------- */
+.jumpscare--shake .jumpscare__shaker {
+  animation: js-shake var(--js-shake-ms) linear both;
+}
+
+@keyframes js-shake {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  12% {
+    transform: translate(calc(var(--js-shake-distance) * -1), 2px) rotate(calc(var(--js-shake-rotate) * -1));
+  }
+  26% {
+    transform: translate(var(--js-shake-distance), -2px) rotate(var(--js-shake-rotate));
+  }
+  40% {
+    transform: translate(calc(var(--js-shake-distance) * -0.7), 1px) rotate(calc(var(--js-shake-rotate) * -0.6));
+  }
+  55% {
+    transform: translate(calc(var(--js-shake-distance) * 0.5), 0) rotate(calc(var(--js-shake-rotate) * 0.4));
+  }
+  70% {
+    transform: translate(calc(var(--js-shake-distance) * -0.3), 0) rotate(calc(var(--js-shake-rotate) * -0.2));
+  }
+  85% {
+    transform: translate(calc(var(--js-shake-distance) * 0.12), 0) rotate(0deg);
+  }
+}
+
+/* ---------- Step 5: settle into a normal popup ---------- */
+.jumpscare--settled .jumpscare__popup {
+  --reaction-size: min(46vw, 200px);
+  width: min(100%, 520px);
+  background: var(--danger-bg);
+  border-color: var(--danger);
+  box-shadow:
+    0 24px 60px rgba(40, 0, 20, 0.5),
+    0 0 0 8px color-mix(in srgb, var(--danger) 25%, transparent);
+}
+
+.jumpscare--settled .jumpscare__title {
+  max-width: 18ch;
+  font-size: clamp(1.5rem, 6vw, 2.2rem);
+  -webkit-text-stroke: 0;
+  text-shadow: 0 3px 0 color-mix(in srgb, var(--danger-dark) 25%, transparent);
+}
+
+.jumpscare__details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: js-details-in var(--js-settle-ms) ease-out both;
+}
+
+@keyframes js-details-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.jumpscare__given,
+.jumpscare__correct {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--muted-text);
+}
+
+.jumpscare__given strong {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 10px;
+  border-radius: 10px;
+  font-size: 1.35rem;
+  color: var(--danger-dark);
+  background: color-mix(in srgb, var(--danger) 14%, transparent);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.jumpscare__equation {
+  display: block;
+  margin: 4px 0 12px;
+  font-size: clamp(1.8rem, 8vw, 2.6rem);
+  font-weight: 800;
+  color: var(--text-color);
+}
+
+.jumpscare__equation strong {
+  color: var(--success-dark);
+}
